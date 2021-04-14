@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GenerationsComponent } from './generations.component';
 
 describe('GenerationsComponent', () => {
