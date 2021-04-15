@@ -8,6 +8,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {GenerationsComponent} from './components/generations/generations.component';
 import {PokemonsComponent} from './components/pokemons/pokemons.component';
+import { PokemonComponent } from './components/pokemon/pokemon.component';
 
 // locale: France
 import {LOCALE_ID} from '@angular/core';
@@ -19,7 +20,8 @@ registerLocaleData(localeFR);
   declarations: [
     AppComponent,
     GenerationsComponent,
-    PokemonsComponent
+    PokemonsComponent,
+    PokemonComponent
   ],
   imports: [
     BrowserModule,

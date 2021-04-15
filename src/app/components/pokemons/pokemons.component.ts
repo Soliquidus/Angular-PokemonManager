@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./pokemons.component.css']
 })
 export class PokemonsComponent implements OnInit {
-  pokemons = [
+  public pokemons = [
     { id: 1, name: 'Bulbizarre', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
       category: 'seed', type: ['plant', 'poison'], size: 0.78, weight: 6.9 },
     { id: 2, name: 'Herbizarre', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png',
@@ -20,6 +20,7 @@ export class PokemonsComponent implements OnInit {
     { id: 6, name: 'Dracaufeu', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
       category: 'flame', type: ['fire', 'flight'], size: 1.7, weight: 90.5 },
   ];
+  public selectedPokemon: any;
 
   constructor() {
   }
@@ -27,4 +28,7 @@ export class PokemonsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectPokemon(name: any): void{
+    this.selectedPokemon = name;
+  }
 }
