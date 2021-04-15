@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {PokemonsService} from '../../services/pokemons.service';
 
 @Component({
   selector: 'app-pokemons',
@@ -6,29 +7,17 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./pokemons.component.css']
 })
 export class PokemonsComponent implements OnInit {
-  public pokemons = [
-    { id: 1, name: 'Bulbizarre', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-      category: 'seed', type: ['plant', 'poison'], size: 0.78, weight: 6.9 },
-    { id: 2, name: 'Herbizarre', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png',
-      category: 'seed', type: ['plant', 'poison'], size: 1, weight: 13 },
-    { id: 3, name: 'Florizarre', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png',
-      category: 'seed', type: ['plant', 'poison'], size: 2, weight: 100 },
-    { id: 4, name: 'Salamèche', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
-      category: 'lizard', type: ['fire'], size: 0.6, weight: 8.5 },
-    { id: 5, name: 'Reptincel', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png',
-      category: 'flame', type: ['fire'], size: 1.1, weight: 19 },
-    { id: 6, name: 'Dracaufeu', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
-      category: 'flame', type: ['fire', 'flight'], size: 1.7, weight: 90.5 },
-  ];
+  pokemons: any;
+  count = 0;
   public selectedPokemon: any;
 
-  constructor() {
+  constructor(private pokemonsService: PokemonsService) {
   }
 
   ngOnInit(): void {
+    this.pokemons = this.pokemonsService.getPokemons();
+    this.count = this.pokemonsService.countPokemons();
   }
 
-  selectPokemon(name: any): void{
-    this.selectedPokemon = name;
-  }
+  selectPokemon = (name: any) => this.selectedPokemon = name;
 }

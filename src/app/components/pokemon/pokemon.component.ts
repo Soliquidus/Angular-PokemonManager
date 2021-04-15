@@ -15,7 +15,5 @@ export class PokemonComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  clickOnImage(name): void {
-    this.eventClickImage.emit(name);
-  }
+  clickOnImage = (name) => this.eventClickImage.emit(name);
 }
