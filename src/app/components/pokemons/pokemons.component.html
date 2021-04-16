@@ -9,20 +9,28 @@
   </div>
   <div class="columns">
     <div class="column is-two-third">
-      <form>
+      <form #form="ngForm">
         <div class="field has-addons">
           <div class="control has-icons-left">
             <input class="input is-small"
                    name="pokemonSearch" type="search" placeholder="Pokemon name"
                    [(ngModel)]="formSearchPokemon.name"
-                   (keyup)="search(formSearchPokemon.name)">
+                   (keyup)="search(formSearchPokemon.name)" pattern="[a-zA-Z 3]*"
+                   [class.is-danger]="form.invalid">
             <span class="icon is-small is-left">
               <fa-icon [icon]="faOptinMonster"></fa-icon>
             </span>
+            <div *ngIf="form.invalid" class="tag is-danger is-light">
+              Only letters are allowed.
+            </div>
+            <div *ngIf="easterEggs">
+              <img src="https://media.giphy.com/media/3o7bu1nVSxNQUWMAZa/source.gif" alt="C3PO">
+            </div>
           </div>
           <div class="control">
             <a class="button is-primary is-small"
-               (click)="search(formSearchPokemon.name)">
+               (click)="search(formSearchPokemon.name)"
+               [class.is-danger]="form.invalid">
               Search
             </a>
           </div>

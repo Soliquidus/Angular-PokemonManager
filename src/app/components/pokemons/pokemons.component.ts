@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PokemonsService} from '../../services/pokemons.service';
-import { faOptinMonster } from '@fortawesome/free-brands-svg-icons';
+import {faOptinMonster} from '@fortawesome/free-brands-svg-icons';
 import {FormSearchPokemon} from '../../models/form-search-pokemon';
 
 @Component({
@@ -14,6 +14,7 @@ export class PokemonsComponent implements OnInit {
   public selectedPokemon: any;
   faOptinMonster = faOptinMonster;
   formSearchPokemon = new FormSearchPokemon('');
+  easterEggs = false;
 
   constructor(private pokemonsService: PokemonsService) {
   }
@@ -24,7 +25,13 @@ export class PokemonsComponent implements OnInit {
   }
 
   selectPokemon = (name: any) => this.selectedPokemon = name;
-  search = (pokemonName: any) => this.pokemons = this.pokemonsService.searchPokemon(pokemonName);
+  search = (pokemonName: any) => {
+    this.easterEggs = false;
+    this.pokemons = this.pokemonsService.searchPokemon(pokemonName);
+    if (pokemonName === 'C3PO') {
+      this.easterEggs = true;
+    }
+  }
   cancelSearch = () => {
     this.pokemons = this.pokemonsService.getPokemons();
     this.formSearchPokemon.setName('');
