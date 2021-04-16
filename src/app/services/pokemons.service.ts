@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PokemonsService {
+
   public pokemons = [
     { id: 1, name: 'Bulbizarre', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
       category: 'seed', type: ['plant', 'poison'], size: 0.78, weight: 6.9 },
@@ -20,6 +21,13 @@ export class PokemonsService {
   ];
 
   constructor() { }
+
   getPokemons = () => this.pokemons;
+
   countPokemons = () => this.pokemons.length;
+
+  searchPokemon = (pokemonName: string) => {
+    const regex = new RegExp(pokemonName, 'gi');
+    return this.pokemons.filter(pokemon => pokemon.name.match(regex));
+  }
 }

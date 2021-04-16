@@ -7,6 +7,35 @@
       <p *ngIf="selectedPokemon">Selected pokemon is : {{selectedPokemon}}</p>
     </div>
   </div>
+  <div class="columns">
+    <div class="column is-two-third">
+      <form>
+        <div class="field has-addons">
+          <div class="control has-icons-left">
+            <input class="input is-small"
+                   name="pokemonSearch" type="search" placeholder="Pokemon name"
+                   [(ngModel)]="formSearchPokemon.name"
+                   (keyup)="search(formSearchPokemon.name)">
+            <span class="icon is-small is-left">
+              <fa-icon [icon]="faOptinMonster"></fa-icon>
+            </span>
+          </div>
+          <div class="control">
+            <a class="button is-primary is-small"
+               (click)="search(formSearchPokemon.name)">
+              Search
+            </a>
+          </div>
+          <div class="control">
+            <a class="button is-light is-small"
+               (click)="cancelSearch()">
+              Cancel </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div *ngIf=pokemons?.length<1>No Pokemons were found</div>
   <div class="columns is-multiline">
     <ul class="menu-list column is-one-third" *ngFor="let pokemon of pokemons">
       <li>
