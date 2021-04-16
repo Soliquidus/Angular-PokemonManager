@@ -16,6 +16,9 @@ import {registerLocaleData} from '@angular/common';
 import localeFR from '@angular/common/locales/fr';
 import {FormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { CreationComponent } from './components/account/creation/creation.component';
+import { ConnectionComponent } from './components/account/connection/connection.component';
 registerLocaleData(localeFR);
 
 @NgModule({
@@ -23,7 +26,10 @@ registerLocaleData(localeFR);
     AppComponent,
     GenerationsComponent,
     PokemonsComponent,
-    PokemonComponent
+    PokemonComponent,
+    NavBarComponent,
+    CreationComponent,
+    ConnectionComponent
   ],
   imports: [
     BrowserModule,
