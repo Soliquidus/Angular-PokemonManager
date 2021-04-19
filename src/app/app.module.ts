@@ -19,6 +19,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CreationComponent } from './components/account/creation/creation.component';
 import { ConnectionComponent } from './components/account/connection/connection.component';
+import {HttpClientModule} from '@angular/common/http';
 registerLocaleData(localeFR);
 
 @NgModule({
@@ -35,7 +36,8 @@ registerLocaleData(localeFR);
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'fr'}],
   bootstrap: [AppComponent]

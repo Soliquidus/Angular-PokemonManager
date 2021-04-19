@@ -1,6 +1,4 @@
 <div class="container">
-  <h2>The six first pokemons : </h2>
-  <hr/>
   <div class="columns">
     <div class="column">
       <p>{{count}} Pokemons in database</p>
@@ -47,7 +45,7 @@
   <div class="columns is-multiline">
     <ul class="menu-list column is-one-third" *ngFor="let pokemon of pokemons">
       <li>
-        <app-pokemon [pokemon]="pokemon" (eventClickImage)="selectPokemon($event)"></app-pokemon>
+        <app-pokemon [pokemonInput]="pokemon" (eventClickImage)="selectPokemon($event)"></app-pokemon>
       </li>
     </ul>
   </div>

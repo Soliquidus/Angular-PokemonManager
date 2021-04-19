@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PokemonsService} from '../../services/pokemons.service';
 
 @Component({
   selector: 'app-generations',
@@ -6,19 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./generations.component.css']
 })
 export class GenerationsComponent implements OnInit {
-  generations = [
-    'Generation I',
-    'Generation II',
-    'Generation III',
-    'Generation IV',
-    'Generation V',
-    'Generation VI',
-    'Generation VII',
-  ];
+  generations: any;
+  numberOfGenerations: number;
 
-  constructor() { }
+  constructor(private pokemonsService: PokemonsService) { }
 
   ngOnInit(): void {
+    this.pokemonsService.getGenerations().subscribe(res => {
+      this.generations = res.results;
+      this.numberOfGenerations = res.count;
+    });
   }
 
 }

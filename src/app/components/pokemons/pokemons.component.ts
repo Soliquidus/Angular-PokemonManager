@@ -20,20 +20,29 @@ export class PokemonsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pokemons = this.pokemonsService.getPokemons();
-    this.count = this.pokemonsService.countPokemons();
+    this.pokemonsService.getPokemons().subscribe(res => {
+      this.pokemons = res.results;
+      this.count = res.count;
+    });
   }
 
   selectPokemon = (name: any) => this.selectedPokemon = name;
+
   search = (pokemonName: any) => {
     this.easterEggs = false;
-    this.pokemons = this.pokemonsService.searchPokemon(pokemonName);
-    if (pokemonName === 'C3PO') {
-      this.easterEggs = true;
-    }
+    const regex = new RegExp(pokemonName, 'gi');
+    this.pokemonsService.getPokemons().subscribe(
+      res => {
+        this.pokemons = res.results.filter(pokemon => pokemon.name.match(regex)
+        );
+        if (pokemonName === 'C3PO') {
+          this.easterEggs = true;
+        }
+      });
   }
+
   cancelSearch = () => {
-    this.pokemons = this.pokemonsService.getPokemons();
+    this.pokemonsService.getPokemons().subscribe(res => this.pokemons = res.results);
     this.formSearchPokemon.setName('');
   }
 }

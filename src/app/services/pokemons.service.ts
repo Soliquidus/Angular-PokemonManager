@@ -1,33 +1,26 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {GenerationAPI} from '../models/generation-api';
+import {PokemonsAPI} from '../models/pokemons-api';
+import {PokemonAPI} from '../models/pokemon-api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonsService {
+  public pokemons: any;
 
-  public pokemons = [
-    { id: 1, name: 'Bulbasaur', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-      category: 'seed', type: ['plant', 'poison'], size: 0.78, weight: 6.9 },
-    { id: 2, name: 'Ivysaur', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png',
-      category: 'seed', type: ['plant', 'poison'], size: 1, weight: 13 },
-    { id: 3, name: 'Venausaur', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png',
-      category: 'seed', type: ['plant', 'poison'], size: 2, weight: 100 },
-    { id: 4, name: 'Charmander', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
-      category: 'lizard', type: ['fire'], size: 0.6, weight: 8.5 },
-    { id: 5, name: 'Charmeleon', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png',
-      category: 'flame', type: ['fire'], size: 1.1, weight: 19 },
-    { id: 6, name: 'Charizard', img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
-      category: 'flame', type: ['fire', 'flight'], size: 1.7, weight: 90.5 },
-  ];
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
-
-  getPokemons = () => this.pokemons;
-
-  countPokemons = () => this.pokemons.length;
-
-  searchPokemon = (pokemonName: string) => {
-    const regex = new RegExp(pokemonName, 'gi');
-    return this.pokemons.filter(pokemon => pokemon.name.match(regex));
+  getGenerations = () => {
+    const url = 'https://pokeapi.co/api/v2/generation/';
+    return this.http.get<GenerationAPI>(url);
   }
+
+  getPokemons = () => {
+    const url = 'https://pokeapi.co/api/v2/pokemon/';
+    return this.http.get<PokemonsAPI>(url);
+  }
+
+  getPokemon = (url) => this.http.get<PokemonAPI>(url);
 }
