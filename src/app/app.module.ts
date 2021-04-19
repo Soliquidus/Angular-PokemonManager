@@ -20,6 +20,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CreationComponent } from './components/account/creation/creation.component';
 import { ConnectionComponent } from './components/account/connection/connection.component';
 import {HttpClientModule} from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
 registerLocaleData(localeFR);
 
 @NgModule({
@@ -37,7 +38,8 @@ registerLocaleData(localeFR);
     AppRoutingModule,
     FormsModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'fr'}],
   bootstrap: [AppComponent]

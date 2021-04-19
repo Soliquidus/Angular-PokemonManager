@@ -10,6 +10,8 @@ import {FormSearchPokemon} from '../../models/form-search-pokemon';
 })
 export class PokemonsComponent implements OnInit {
   pokemons: any;
+  page = 1;
+  limit = 25;
   count = 0;
   public selectedPokemon: any;
   faOptinMonster = faOptinMonster;
@@ -20,18 +22,26 @@ export class PokemonsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pokemonsService.getPokemons().subscribe(res => {
-      this.pokemons = res.results;
-      this.count = res.count;
-    });
+    this.getPokemons();
   }
 
+  // Get Pokemons with pagination parameters
+  getPokemons = () => {
+    this.pokemonsService.getPokemons(this.limit, this.page)
+      .subscribe(res => {
+        this.pokemons = res.results;
+        this.count = res.count;
+      });
+  }
+
+  // Select one Pokemon
   selectPokemon = (name: any) => this.selectedPokemon = name;
 
+  // Search for Pokemons
   search = (pokemonName: any) => {
     this.easterEggs = false;
     const regex = new RegExp(pokemonName, 'gi');
-    this.pokemonsService.getPokemons().subscribe(
+    this.pokemonsService.getPokemons(this.limit, this.page).subscribe(
       res => {
         this.pokemons = res.results.filter(pokemon => pokemon.name.match(regex)
         );
@@ -41,8 +51,9 @@ export class PokemonsComponent implements OnInit {
       });
   }
 
+  // Reset search
   cancelSearch = () => {
-    this.pokemonsService.getPokemons().subscribe(res => this.pokemons = res.results);
+    this.pokemonsService.getPokemons(this.limit, this.page).subscribe(res => this.pokemons = res.results);
     this.formSearchPokemon.setName('');
   }
 }

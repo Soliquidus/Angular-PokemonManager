@@ -17,8 +17,8 @@ export class PokemonsService {
     return this.http.get<GenerationAPI>(url);
   }
 
-  getPokemons = () => {
-    const url = 'https://pokeapi.co/api/v2/pokemon/';
+  getPokemons = (limit: number, offset: number) => {
+    const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
     return this.http.get<PokemonsAPI>(url);
   }
 

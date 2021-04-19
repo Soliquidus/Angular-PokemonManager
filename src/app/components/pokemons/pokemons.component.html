@@ -43,10 +43,13 @@
   </div>
   <div *ngIf=pokemons?.length<1>No Pokemons were found</div>
   <div class="columns is-multiline">
-    <ul class="menu-list column is-one-third" *ngFor="let pokemon of pokemons">
+    <ul class="menu-list column is-one-third"
+        *ngFor="let pokemon of pokemons | paginate: {itemsPerPage: 25, currentPage: page, totalItems: count}">
       <li>
         <app-pokemon [pokemonInput]="pokemon" (eventClickImage)="selectPokemon($event)"></app-pokemon>
       </li>
     </ul>
   </div>
 </div>
+<pagination-controls (pageChange)="page = $event; getPokemons()"></pagination-controls>
+
