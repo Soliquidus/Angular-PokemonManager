@@ -1,0 +1,10 @@
+.headNoTop {
+  border-bottom: 1px solid #dbdbdb;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.pokeAvatar {
+  cursor: pointer;
+}
+

@@ -46,7 +46,7 @@
     <ul class="menu-list column is-one-third"
         *ngFor="let pokemon of pokemons | paginate: {itemsPerPage: 25, currentPage: page, totalItems: count}">
       <li>
-        <app-pokemon [pokemonInput]="pokemon" (eventClickImage)="selectPokemon($event)"></app-pokemon>
+        <app-pokemon [pokemonInput]="pokemon" ></app-pokemon>
       </li>
     </ul>
   </div>

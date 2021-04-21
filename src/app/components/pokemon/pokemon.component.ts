@@ -12,6 +12,7 @@ export class PokemonComponent implements OnInit {
   @Input() pokemonInput: any;
   @Output() eventClickImage = new EventEmitter();
 
+  isModalActive: boolean;
   pokemon: PokemonAPI;
 
   constructor(private pokemonsService: PokemonsService) {
@@ -19,8 +20,11 @@ export class PokemonComponent implements OnInit {
 
   ngOnInit(): void {
     this.pokemonsService.getPokemon(this.pokemonInput.url)
-      .subscribe(res => this.pokemon = res);
+      .subscribe(res => {
+        this.pokemon = res;
+      });
   }
 
-  clickOnImage = (name) => this.eventClickImage.emit(name);
+  // Fonction pour la modal de Bulma.
+  toggleModal = () => this.isModalActive = !this.isModalActive;
 }

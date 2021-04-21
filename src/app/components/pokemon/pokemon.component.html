@@ -1,9 +1,9 @@
 <ul class="menu-list">
   <div *ngIf="pokemon">
-    <img (click)="clickOnImage(pokemon.name)"
+    <img class="pokeAvatar" (click)="toggleModal()"
          src="{{pokemon.sprites.front_default}}" alt="pokemon"/>
     <li>
-      Name : {{pokemon.name | titlecase}}
+      <b>{{pokemon.name | titlecase}}</b>
     </li>
     <li>
       Height : <span *ngIf="pokemon.height; else na">
@@ -18,3 +18,63 @@
     <ng-template #na>N/A</ng-template>
   </div>
 </ul>
+
+<!--Modal avec Bulma-->
+<div class="modal" [ngClass]="{'is-active' : isModalActive}" *ngIf="pokemon">
+  <div class="modal-background" (click)="toggleModal()"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{{pokemon.name | titlecase}}</p>
+    </header>
+    <section class="modal-card-body">
+      <img src="{{pokemon.sprites.front_default}}" alt="">
+      <img src="{{pokemon.sprites.back_default}}" alt="">
+    </section>
+    <section class="modal-card-head headNoTop">
+      <p class="modal-card-title">General characteristics : </p>
+    </section>
+    <section class="modal-card-body">
+      <ul class="menu-list">
+        <b>Types :</b>
+        <div *ngIf="pokemon">
+          <li *ngFor="let type of pokemon.types">
+            - <span *ngIf="pokemon.types; else na">{{type.type.name | titlecase}}</span>
+          </li><br>
+          <li>
+            <b>Height :</b>
+            <span *ngIf="pokemon.height; else na">
+              {{pokemon.height / 10 | number:'1.0-2'}}m
+            </span>
+          </li>
+          <li>
+            <b>Weight :</b>
+            <span *ngIf="pokemon.weight; else na">
+              {{pokemon.weight / 10 | number:'1.0-2'}}kg
+            </span>
+          </li>
+        </div>
+      </ul>
+    </section>
+    <section class="modal-card-head headNoTop">
+      <p class="modal-card-title">Abilities & stats : </p>
+    </section>
+    <section class="modal-card-body">
+      <ul class="menu-list">
+        <b>Abilities :</b>
+        <li *ngFor="let ability of pokemon.abilities">
+          - <span *ngIf="pokemon.abilities; else na">{{ability.ability.name | titlecase}}</span>
+        </li><br>
+        <b>Stats :</b>
+        <li *ngFor="let stat of pokemon.stats">
+          <span *ngIf="pokemon.stats; else na">
+            {{stat.stat.name | titlecase}} -> {{stat.base_stat}}
+          </span>
+        </li>
+      </ul>
+    </section>
+    <ng-template #na>N/A</ng-template>
+    <footer class="modal-card-foot">
+      <button (click)="toggleModal()" class="button">Close</button>
+    </footer>
+  </div>
+</div>
